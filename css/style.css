@@ -146,48 +146,56 @@ header {
     vertical-align: top;
 }
 
-.search { width: 270px; text-align: right; }
+.search { width: 270px; }
 
-.search form { display: inline-block; width: 230px; }
+.search form {
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.sign-search {
+    position: absolute;
+    left: 10px;
+}
 
 .search input {
     width: 100%;
     height: 40px;
+    padding-left: 40px;
     background-color: #293449;
     border: none;
+    box-sizing: border-box;
 }
+
+.search input::-webkit-input-placeholder { color: #ffffff; }
 
 div.search:hover .icon-search { opacity: 1; }
 
-div.search:hover { background-color: #212a3a; cursor: pointer; }
+div.search:hover {
+    background-color: #212a3a;
+    cursor: pointer;
+}
 
-div.search:hover input { background-color: #212a3a; }
-
-div.search input:focus form {
-    background-color: #fff;
-    color: #fff;
-    outline: none;
+div.search:hover input {
+    background-color: #212a3a;
+    cursor: pointer;
 }
 
 div.search input:focus {
     background-color: #fff;
-    color: #000;
+    color: #bc1339;
     outline: none;
 }
 
-div.search:active .icon-search { opacity: 0.6; }
-
-div.search:active { background-color: #293449; }
-
-div.search:active input {
-    background-color: #293449;
-    outline: none;
-}
+div.search input:focus .icon-search { color: #bc1339; opacity: 1; }
 
 .bookmarks,
 .basket {
     width: 150px;
 }
+
+.basket-full { background-color: #ee3643; }
 
 div.bookmarks:hover .icon-bookmark,
 div.basket:hover .icon-basket {
@@ -267,9 +275,14 @@ div.basket:active {
     color: #32425c;
 }
 
+.login-wrapper {
+    display: inline-block;
+    margin-left: 46px;
+    vertical-align: top;
+}
+
 .btn-white {
     display: inline-block;
-    vertical-align: top;
     background-color: #ffffff;
 }
 
@@ -278,16 +291,67 @@ div.basket:active {
     color: #c5c5c5;
 }
 
+.icon-logout {
+    margin-left: 20px;
+    font-size: 22px;
+    vertical-align: middle;
+    color: #c5c5c5;
+}
+
+.icon-logout:hover { color: #32425c; }
+
+.icon-logout:active { color: #c5c5c5; }
+
+.icon-user {
+    margin-left: 13px;
+    font-size: 18px;
+    vertical-align: middle;
+    color: #c5c5c5;
+}
+
+.icon-user:hover { color: #32425c; }
+
+.icon-user:active { color: #c5c5c5; }
+
 .login {
     width: 120px;
     margin-left: 60px;
     line-height: 46px;
 }
 
+.login-yes {
+    width: 299px;
+    line-height: 46px;
+}
+
 .text-login {
     margin-left: 6px;
     font-size: 21px;
+    vertical-align: middle;
     color: #000000;
+}
+
+.my-private {
+    padding: 7px 18px 0;
+}
+
+.my-private a {
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: underline;
+    color: #32425c;
+}
+
+.my-private a:hover { color: #ee3643; }
+
+.my-private a:active {
+    color: #32425c;
+    opacity: 0.3;
+}
+
+.my-private span {
+    vertical-align: middle;
+    color: #32425c;
 }
 
 .login:hover .icon-login { color: #32425c; }
@@ -579,13 +643,78 @@ div.basket:active {
     text-align: center;
     vertical-align: middle;
     box-sizing: border-box;
+    transition: all 0.5s;
 }
 
-.item:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+.item:hover { box-shadow: 0 10px 25px rgba(41, 52, 73, 0.5); }
+
+.item:hover img {
+    display: none;
+}
 
 .item > img {
     margin-top: 29px;
 }
+
+.item .icon-basket {
+    margin-right: 20px;
+}
+
+.btn-green {
+    display: none;
+    width: 135px;
+    height: 38px;
+    margin-top: 29px;
+    font-family: Cuprum;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: left;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #63a63e;
+    border-radius: 3px;
+    border: none;
+    box-shadow: inset 0 -3px #367315;
+}
+
+.btn-border {
+    display: none;
+    width: 135px;
+    height: 38px;
+    margin-top: 7px;
+    margin-bottom: 29px;
+    font-family: Cuprum;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    color: #32425c;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border: 3px solid #63a63e;
+}
+
+.item:hover .btn-green,
+.item:hover .btn-border {
+    display: inline-block;
+}
+
+.btn-green:hover { background-color: #5fbb2d; }
+
+.btn-green:hover .icon-basket { opacity: 1; }
+
+.btn-green:active {
+    background-color: #518534;
+    box-shadow: none;
+}
+
+.btn-green:focus { outline: none; }
+
+.btn-border:hover { border: 3px solid #33425c; }
+
+.btn-border:active { opacity: 0.3; }
+
+.btn-border:focus { outline: none; }
 
 .item:last-child {
     margin-right: 0;
@@ -653,11 +782,18 @@ div.basket:active {
 
 .img-brand:nth-child(4n) { margin-right: 0; }
 
+.img-brand:hover { box-shadow: 0px 10px 25px rgba(41, 52, 73, 0.5); }
+
+.img-brand:active {
+    box-shadow: 0px 4px 10px rgba(41, 52, 73, 0.5);
+    opacity: 0.5;
+}
+
 .services {
+    position: relative;
     height: 522px;
     margin-top: 75px;
-    background: url(../img/truck.png) no-repeat 863px 261px,
-                url(../img/grey.png) no-repeat 601px 261px, #f2f6f8;
+    background: #f2f6f8;
 }
 
 .block-service {
@@ -684,24 +820,35 @@ div.basket:active {
 }
 
 .menu-services {
-    display: table;
-    float: left;
+    position: relative;
+    display: inline-block;
     width: 240px;
     height: 272px;
     margin-top: 29px;
-    background: url(../img/shadow.png) no-repeat 100%;
+}
+
+.img-shadow {
+    position: absolute;
+    z-index: 150;
+    left: 230px;
+    width: 10px;
+    height: 272px;
+    background: url(../img/shadow.png);
 }
 
 .menu-services ul {
-    display: table-cell;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 180px;
     margin: 0;
     padding: 0;
+    margin-top: -90px;
     vertical-align: middle;
     list-style-type: none;
-    height: 180px;
 }
 
-.menu-services a {
+.menu-services li a {
     display: block;
     height: 60px;
     padding-left: 23px;
@@ -713,10 +860,77 @@ div.basket:active {
     box-shadow: inset 0 0 1px #293449;
 }
 
+.menu-services li a:hover {
+    background-color: #293449;
+    box-shadow: inset 0 1px 0 #405069;
+    box-shadow: 0 1px 0 #293449;
+}
+
+.menu-services li a:focus {
+    background-color: #ffffff;
+    color: #32425c;
+}
+
+.menu-services li a:active {
+    background-color: #ffffff;
+    color: #32425c;
+}
+
 .block-delivery {
+    /*display: none;*/
+    position: relative;
     display: inline-block;
-    width: 275px;
-    margin: 70px;
+    margin: 67px 0 0 70px;
+    vertical-align: top;
+}
+
+.img-delivery {
+    position: absolute;
+    top: 15px;
+    left: 155px;
+    width: 467px;
+    height: 261px;
+    background-image: url(../img/truck1.png);
+}
+
+.block-guarantee {
+    display: none;
+    position: relative;
+    /*display: inline-block;*/
+    margin: 67px 0 0 70px;
+    vertical-align: top;
+}
+
+.img-guarantee {
+    position: absolute;
+    top: 15px;
+    left: 250px;
+    width: 467px;
+    height: 261px;
+    background-image: url(../img/sign1.png);
+}
+
+.block-credit {
+    display: none;
+    position: relative;
+    /*display: inline-block;*/
+    margin: 67px 0 0 70px;
+    vertical-align: top;
+}
+
+.img-credit {
+    position: absolute;
+    top: 15px;
+    left: 190px;
+    width: 467px;
+    height: 261px;
+    background-image: url(../img/credit1.png);
+}
+
+.block-credit button {
+    width: 195px;
+    height: 38px;
+    margin-top: 25px;
 }
 
 .about {
@@ -807,6 +1021,13 @@ div.basket:active {
     padding-right: 0;
 }
 
+.footer-menu a:hover { text-decoration: underline; }
+
+.footer-menu a:active {
+    text-decoration: none;
+    opacity: 0.5;
+}
+
 .part1 { margin-top: 42px; }
 
 .part1 a {
@@ -850,23 +1071,28 @@ div.basket:active {
     list-style: none;
 }
 
-.social a { color: #fff; }
-
 .social li {
     display: inline-block;
     margin-right: 4px;
+}
+
+.social a {
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    line-height: 42px;
 }
 
 .round {
     display: inline-block;
     width: 41px;
     height: 42px;
-    line-height: 42px;
     text-align: center;
     background: #212a3a;
     border-radius: 50%;
-    font-size: 18px;
 }
+
+.round:hover { background-color: #ee3643;}
 
 .email a,
 .site a {
@@ -875,9 +1101,17 @@ div.basket:active {
 
 .email { margin-right: 53px; }
 
+.email a:hover,
+.site a:hover { text-decoration: underline;}
+
+.email a:active,
+.site a:active {
+    text-decoration: none;
+    color: #ee3643;
+}
+
 .clearfix:after {
     content: '';
     display: table;
     clear: both;
 }
-
